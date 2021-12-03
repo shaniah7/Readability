@@ -1,0 +1,58 @@
+package com.company;
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner text = new Scanner(System.in);
+        System.out.print("Please type a statement: ");
+        String statement = text.nextLine();
+        //System.out.println("Text: " + statement);
+        int letters = 0;
+        int words = 0;
+        int sentences = 0;
+        char temp;
+        char word;
+        char sent;
+        for (int i = 0; i < statement.length(); i++){
+            temp = statement.charAt(i);
+
+            if(temp != ' ')
+                letters++;
+            }
+        //System.out.println(letters + " letter(s)");
+
+        for (int i = 0; i < statement.length(); i++){
+            word = statement.charAt(i);
+
+            if(word == ' ')
+                words++;
+        }
+        int word_count = words + 1;
+        //System.out.println(word_count + " word(s)");
+
+        for (int i = 0; i < statement.length(); i++){
+            sent = statement.charAt(i);
+
+            if(sent == '!' || sent == '.' || sent == '?')
+                sentences++;
+        }
+        //System.out.println(sentences + " sentence(s)");
+
+//        int L = letters/word_count * 100;
+//        int S = sentences/word_count * 100;
+        int L = letters/word_count;
+        int S = sentences/word_count;
+        int index = (int) ((0.0588 * L) - (0.296 * S) - 15.8);
+       // int index = (int) ((5.89 * L) - (0.3 * S) - 15.8);
+        if( index < 1){
+            System.out.println("Before Grade 1 ");
+        } else if(index > 16){
+            System.out.println("Grade 16+ ");
+
+        } else {
+            System.out.println(statement + " (Grade " + index + " )");
+        }
+        //double index = (0.0588 * L - 0.296 * S - 15.8);
+    }
+
+}
